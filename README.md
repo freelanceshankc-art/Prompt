@@ -1,36 +1,86 @@
 # Facebook Reels Prompt Generator
 
-An interactive tool to generate AI-ready prompts for **text-to-image (T2I)** and **image-to-video (I2V)** content optimized for **Facebook Reels, Instagram Reels, TikTok, and YouTube Shorts**.
+Generate AI-ready prompts for **text-to-image (T2I)** and **image-to-video (I2V)** content optimized for **Facebook Reels, Instagram Reels, TikTok, and YouTube Shorts**.
 
-Pick a niche, choose a mood and lighting style, add a custom detail — get instant copy-paste prompts plus a viral caption hook.
+Pick a niche → choose a mood and lighting style → add a custom detail → get instant copy-paste prompts plus a viral caption hook.
+
+---
+
+## Three Ways to Use It
+
+| Tool | Best For | How to Run |
+|------|----------|------------|
+| `index.html` | Visual users, mobile-friendly | Open in any browser |
+| `generate.py` | Terminal users, automation, scripting | `python generate.py` |
+| `generate.js` | Node.js users, integration into apps | `node generate.js` |
+| `master-prompts.md` | Quick copy-paste reference | Read directly on GitHub |
+
+All three tools share the same data source: **`niches.json`** — edit one file, update everywhere.
 
 ---
 
 ## Features
 
 - **12 niche templates**: Fitness, Food, Fashion, Motivation, Comedy, Travel, Beauty, Pets, Tech, Business, Real Estate, Education
-- **Customizable mood & lighting** for unique results every time
+- **Customizable mood & lighting** for unique results every run
 - **Optional custom detail** input (clothing, props, location, etc.)
-- **One-click copy** for both prompts and caption hooks
+- **Random viral caption hooks** per niche
 - **9:16 vertical optimized** with negative space for text overlays
-- **Zero dependencies** — pure HTML/CSS/JS, runs in any browser
+- **Zero dependencies** — pure HTML/CSS/JS, Python stdlib, Node stdlib
 
 ---
 
-## How to Use
+## 1. Web App (`index.html`)
 
-### Option 1: Use the Web App
+Open `index.html` in any browser. Or host it on GitHub Pages:
 
-1. Open `index.html` in any browser (double-click the file, or host it on GitHub Pages)
-2. Select your **niche** from the dropdown
-3. Pick a **mood** and **lighting style**
-4. (Optional) Add a custom detail like *"wearing a red jacket"* or *"with cherry blossoms"*
-5. Click **Generate Prompts**
-6. Copy the T2I prompt, I2V prompt, and caption hook
+1. Repo Settings → Pages → Source: `main` branch, root folder
+2. Live at `https://<username>.github.io/Prompt/`
 
-### Option 2: Browse the Reference Doc
+The web app loads `niches.json` if served, or falls back to embedded data when opened as a local file.
 
-Open `master-prompts.md` for hand-crafted prompts for every niche in pure markdown — perfect for quick copy-paste.
+---
+
+## 2. Python CLI (`generate.py`)
+
+Requires Python 3.7+ (no pip install needed).
+
+```bash
+# Interactive mode (recommended for first-time users)
+python generate.py
+
+# One-shot mode
+python generate.py --niche fitness --mood cinematic --lighting "golden hour"
+
+# With custom detail
+python generate.py -n food -m luxurious -l "soft studio" -c "with truffle shavings"
+
+# Save to file
+python generate.py -n travel -m calm -l "golden hour" -o my-reel.md
+
+# List all niches
+python generate.py --list
+```
+
+---
+
+## 3. Node.js CLI (`generate.js`)
+
+Requires Node.js 14+ (zero dependencies).
+
+```bash
+# Interactive mode
+node generate.js
+
+# One-shot mode
+node generate.js --niche fashion --mood dramatic --lighting "neon"
+
+# With custom detail and save
+node generate.js -n beauty -m luxurious -l "soft studio" -c "rose gold tones" -o reel.md
+
+# List all niches
+node generate.js --list
+```
 
 ---
 
@@ -55,6 +105,30 @@ Open `master-prompts.md` for hand-crafted prompts for every niche in pure markdo
 
 ---
 
+## Customizing the Niches
+
+Want to add your own niche or tweak existing ones? Just edit **`niches.json`**:
+
+```json
+{
+  "niches": {
+    "yourNicheKey": {
+      "label": "Your Niche Name",
+      "subject": "main subject description",
+      "environment": "where the scene takes place",
+      "camera": "camera and lens specs",
+      "motion": "what moves in the video",
+      "cameraMove": "how the camera moves",
+      "hooks": ["Caption 1", "Caption 2", "Caption 3"]
+    }
+  }
+}
+```
+
+All three tools (web, Python, Node) will pick up your changes automatically.
+
+---
+
 ## Pro Tips
 
 1. **Hook in frame 1** — the first frame must stop the scroll
@@ -71,7 +145,10 @@ Open `master-prompts.md` for hand-crafted prompts for every niche in pure markdo
 
 ```
 Prompt/
-├── index.html          # Interactive prompt generator (open in browser)
+├── index.html          # Interactive web app
+├── generate.py         # Python CLI
+├── generate.js         # Node.js CLI
+├── niches.json         # Shared data source for all generators
 ├── master-prompts.md   # Markdown reference of all niches
 └── README.md           # This file
 ```

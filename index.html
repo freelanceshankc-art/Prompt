@@ -215,106 +215,24 @@
 </div>
 
 <script>
-const niches = {
-  fitness: {
-    subject: "a muscular athlete mid-rep doing a powerful deadlift, sweat dripping, veins visible, intense focus",
-    environment: "in a dark industrial gym with chalk dust in the air",
-    camera: "shot on Canon R5 with 35mm lens, motion blur on barbell",
-    motion: "barbell rises with controlled power, chalk dust swirls, sweat droplet falls in slow motion",
-    cameraMove: "Slow dolly-in toward the lifter",
-    hooks: ["POV: You finally hit your PR", "Day 1 vs Day 100", "Stop scrolling. Start lifting.", "The grind never stops"]
-  },
-  food: {
-    subject: "a gourmet smash burger with melted cheddar dripping down the sides, sesame seed brioche bun, fresh lettuce",
-    environment: "on a slate plate with herbs scattered on a rustic wooden table, steam rising",
-    camera: "shot on Sony A7IV with 90mm macro lens, extreme close-up, shallow DOF",
-    motion: "cheese drips down slowly, steam rises and curls, sesame seeds catch the light",
-    cameraMove: "Slow orbit around the dish",
-    hooks: ["This recipe broke the internet", "POV: Dinner is ready", "You need this in your life", "Save this for later"]
-  },
-  fashion: {
-    subject: "a confident fashion model in an oversized trench coat and bold accessories, walking with attitude",
-    environment: "through a rain-soaked Tokyo street at night with neon signs reflecting in puddles",
-    camera: "shot on Hasselblad with 85mm lens, full body shot",
-    motion: "coat flows in the wind, puddles ripple, neon reflections shimmer, rain falls in slow motion",
-    cameraMove: "Cinematic tracking shot following the model",
-    hooks: ["Outfit of the day", "Run don't walk", "This fit ate", "Style tip you needed"]
-  },
-  motivation: {
-    subject: "a lone silhouette of a person standing on a mountain peak, arms slightly raised, looking at vast horizon",
-    environment: "above a cloud sea at sunrise with epic god rays piercing through",
-    camera: "shot on Sony A1 with 24-70mm lens, wide cinematic composition",
-    motion: "clouds roll slowly below, sun rays shift gently, coat moves in the wind",
-    cameraMove: "Slow crane-up revealing the vast landscape",
-    hooks: ["Read this when you want to quit", "Your sign to keep going", "1 year from now", "Stop waiting. Start doing."]
-  },
-  comedy: {
-    subject: "a surprised character with exaggerated wide-eyed expression, mid-action with chaotic energy",
-    environment: "in a brightly lit modern setting with everyday objects flying around",
-    camera: "shot on Canon R6 with 50mm lens, frozen action moment",
-    motion: "objects fly chaotically in slow motion, character's expression intensifies, comedic timing",
-    cameraMove: "Static camera with slight zoom-in punch",
-    hooks: ["Tell me you're [X] without telling me", "POV: When your boss says...", "Wait for it...", "Me trying to act normal"]
-  },
-  travel: {
-    subject: "a traveler in a tan jacket standing at the edge of a cliff with a backpack",
-    environment: "overlooking turquoise fjords in Norway with breathtaking nature stretching to horizon",
-    camera: "shot on DJI Mavic 3 Pro, ultra-wide aerial angle",
-    motion: "jacket moves in wind, clouds drift, water shimmers below, birds fly across frame",
-    cameraMove: "Slow drone reveal pulling back and upward",
-    hooks: ["Add this to your bucket list", "POV: You quit your job", "Hidden gem you've never heard of", "Save this for your next trip"]
-  },
-  beauty: {
-    subject: "an extreme close-up of flawless glowing skin, dewy droplets on cheek, long lashes catching light",
-    environment: "against a clean minimal beige background with subtle gradient",
-    camera: "shot on Phase One with 120mm macro lens, ultra-shallow DOF",
-    motion: "lashes flutter gently, dewy droplet slowly slides down cheek, light shifts softly",
-    cameraMove: "Subtle slow zoom-in toward the face",
-    hooks: ["This 1 product changed my skin", "Glow up secret no one tells you", "Save this skincare routine", "POV: Glass skin achieved"]
-  },
-  pets: {
-    subject: "an adorable golden retriever puppy mid-jump catching a tennis ball, ears flying up, joyful expression",
-    environment: "in a sunlit green park with bokeh background and warm summer atmosphere",
-    camera: "shot on Sony A9 with 70-200mm lens, frozen action, shallow DOF",
-    motion: "puppy leaps and catches ball, ears bounce, grass blades sway, sun flares gently",
-    cameraMove: "Slow-motion capture",
-    hooks: ["Tell me your pet didn't do this", "Cuteness overload incoming", "POV: Best day ever", "This will make you smile"]
-  },
-  tech: {
-    subject: "a sleek futuristic smartphone floating above a dark glass surface with holographic UI elements",
-    environment: "in a minimalist dark studio with deep blue and purple ambient lighting",
-    camera: "shot on Hasselblad with 100mm macro lens, hyper-realistic product shot",
-    motion: "holographic UI rotates and pulses, light reflections sweep across surface, particles drift",
-    cameraMove: "Slow 360-degree orbit around the device",
-    hooks: ["This gadget will blow your mind", "Tech you didn't know you needed", "Future is here", "Save this. Thank me later."]
-  },
-  business: {
-    subject: "a confident entrepreneur in a tailored navy suit standing in a high-rise office, arms crossed",
-    environment: "with floor-to-ceiling windows showing a glowing city skyline at night",
-    camera: "shot on Sony A7R V with 35mm lens, medium shot from behind",
-    motion: "city lights twinkle below, clouds drift past windows, posture remains strong",
-    cameraMove: "Slow push-in from behind",
-    hooks: ["Read this if you're 25 and broke", "How I made my first $10K", "Mindset shift that changed my life", "Stop trading time for money"]
-  },
-  realestate: {
-    subject: "a luxury modern villa with infinity pool overlooking the ocean",
-    environment: "at sunset with warm interior lights glowing and palm trees swaying",
-    camera: "shot on DJI drone, elevated cinematic angle",
-    motion: "water in pool ripples gently, palm trees sway, interior lights pulse, sunset colors shift",
-    cameraMove: "Slow drone push-in toward the villa",
-    hooks: ["Dream home alert", "POV: You closed on it", "Tour this $5M villa", "Save this for inspiration"]
-  },
-  education: {
-    subject: "a young student surrounded by floating glowing books and holographic equations, eyes wide with wonder",
-    environment: "in a cozy library with warm amber light mixed with blue holographic glow",
-    camera: "shot on Canon R5 with 50mm lens, medium shot",
-    motion: "books float and pages turn themselves, holographic equations rotate, dust motes drift",
-    cameraMove: "Slow orbit around the student",
-    hooks: ["I wish I knew this in school", "Things they don't teach you", "5 skills that will pay you forever", "Save this. Study this."]
-  }
-};
+// Embedded fallback data (used when opening file:// directly without a server)
+const FALLBACK_DATA = {"baseSuffix":"9:16 vertical aspect ratio, subject in lower-third, clean negative space at top for text overlay, hyper-detailed, 8K, cinematic color grading, trending social media aesthetic","moods":["cinematic","energetic","calm","dramatic","playful","luxurious","mysterious"],"lighting":["golden hour","neon","soft studio","dramatic rim light","natural daylight","moody low-key"],"niches":{"fitness":{"label":"Fitness & Workout","subject":"a muscular athlete mid-rep doing a powerful deadlift, sweat dripping, veins visible, intense focus","environment":"in a dark industrial gym with chalk dust in the air","camera":"shot on Canon R5 with 35mm lens, motion blur on barbell","motion":"barbell rises with controlled power, chalk dust swirls, sweat droplet falls in slow motion","cameraMove":"Slow dolly-in toward the lifter","hooks":["POV: You finally hit your PR","Day 1 vs Day 100","Stop scrolling. Start lifting.","The grind never stops"]},"food":{"label":"Food & Cooking","subject":"a gourmet smash burger with melted cheddar dripping down the sides, sesame seed brioche bun, fresh lettuce","environment":"on a slate plate with herbs scattered on a rustic wooden table, steam rising","camera":"shot on Sony A7IV with 90mm macro lens, extreme close-up, shallow DOF","motion":"cheese drips down slowly, steam rises and curls, sesame seeds catch the light","cameraMove":"Slow orbit around the dish","hooks":["This recipe broke the internet","POV: Dinner is ready","You need this in your life","Save this for later"]},"fashion":{"label":"Fashion & Style","subject":"a confident fashion model in an oversized trench coat and bold accessories, walking with attitude","environment":"through a rain-soaked Tokyo street at night with neon signs reflecting in puddles","camera":"shot on Hasselblad with 85mm lens, full body shot","motion":"coat flows in the wind, puddles ripple, neon reflections shimmer, rain falls in slow motion","cameraMove":"Cinematic tracking shot following the model","hooks":["Outfit of the day","Run don't walk","This fit ate","Style tip you needed"]},"motivation":{"label":"Motivation & Mindset","subject":"a lone silhouette of a person standing on a mountain peak, arms slightly raised, looking at vast horizon","environment":"above a cloud sea at sunrise with epic god rays piercing through","camera":"shot on Sony A1 with 24-70mm lens, wide cinematic composition","motion":"clouds roll slowly below, sun rays shift gently, coat moves in the wind","cameraMove":"Slow crane-up revealing the vast landscape","hooks":["Read this when you want to quit","Your sign to keep going","1 year from now","Stop waiting. Start doing."]},"comedy":{"label":"Comedy & Skits","subject":"a surprised character with exaggerated wide-eyed expression, mid-action with chaotic energy","environment":"in a brightly lit modern setting with everyday objects flying around","camera":"shot on Canon R6 with 50mm lens, frozen action moment","motion":"objects fly chaotically in slow motion, character's expression intensifies, comedic timing","cameraMove":"Static camera with slight zoom-in punch","hooks":["Tell me you're [X] without telling me","POV: When your boss says...","Wait for it...","Me trying to act normal"]},"travel":{"label":"Travel & Adventure","subject":"a traveler in a tan jacket standing at the edge of a cliff with a backpack","environment":"overlooking turquoise fjords in Norway with breathtaking nature stretching to horizon","camera":"shot on DJI Mavic 3 Pro, ultra-wide aerial angle","motion":"jacket moves in wind, clouds drift, water shimmers below, birds fly across frame","cameraMove":"Slow drone reveal pulling back and upward","hooks":["Add this to your bucket list","POV: You quit your job","Hidden gem you've never heard of","Save this for your next trip"]},"beauty":{"label":"Beauty & Skincare","subject":"an extreme close-up of flawless glowing skin, dewy droplets on cheek, long lashes catching light","environment":"against a clean minimal beige background with subtle gradient","camera":"shot on Phase One with 120mm macro lens, ultra-shallow DOF","motion":"lashes flutter gently, dewy droplet slowly slides down cheek, light shifts softly","cameraMove":"Subtle slow zoom-in toward the face","hooks":["This 1 product changed my skin","Glow up secret no one tells you","Save this skincare routine","POV: Glass skin achieved"]},"pets":{"label":"Pets & Animals","subject":"an adorable golden retriever puppy mid-jump catching a tennis ball, ears flying up, joyful expression","environment":"in a sunlit green park with bokeh background and warm summer atmosphere","camera":"shot on Sony A9 with 70-200mm lens, frozen action, shallow DOF","motion":"puppy leaps and catches ball, ears bounce, grass blades sway, sun flares gently","cameraMove":"Slow-motion capture","hooks":["Tell me your pet didn't do this","Cuteness overload incoming","POV: Best day ever","This will make you smile"]},"tech":{"label":"Tech & Gadgets","subject":"a sleek futuristic smartphone floating above a dark glass surface with holographic UI elements","environment":"in a minimalist dark studio with deep blue and purple ambient lighting","camera":"shot on Hasselblad with 100mm macro lens, hyper-realistic product shot","motion":"holographic UI rotates and pulses, light reflections sweep across surface, particles drift","cameraMove":"Slow 360-degree orbit around the device","hooks":["This gadget will blow your mind","Tech you didn't know you needed","Future is here","Save this. Thank me later."]},"business":{"label":"Business & Entrepreneur","subject":"a confident entrepreneur in a tailored navy suit standing in a high-rise office, arms crossed","environment":"with floor-to-ceiling windows showing a glowing city skyline at night","camera":"shot on Sony A7R V with 35mm lens, medium shot from behind","motion":"city lights twinkle below, clouds drift past windows, posture remains strong","cameraMove":"Slow push-in from behind","hooks":["Read this if you're 25 and broke","How I made my first $10K","Mindset shift that changed my life","Stop trading time for money"]},"realestate":{"label":"Real Estate & Luxury","subject":"a luxury modern villa with infinity pool overlooking the ocean","environment":"at sunset with warm interior lights glowing and palm trees swaying","camera":"shot on DJI drone, elevated cinematic angle","motion":"water in pool ripples gently, palm trees sway, interior lights pulse, sunset colors shift","cameraMove":"Slow drone push-in toward the villa","hooks":["Dream home alert","POV: You closed on it","Tour this $5M villa","Save this for inspiration"]},"education":{"label":"Education & Learning","subject":"a young student surrounded by floating glowing books and holographic equations, eyes wide with wonder","environment":"in a cozy library with warm amber light mixed with blue holographic glow","camera":"shot on Canon R5 with 50mm lens, medium shot","motion":"books float and pages turn themselves, holographic equations rotate, dust motes drift","cameraMove":"Slow orbit around the student","hooks":["I wish I knew this in school","Things they don't teach you","5 skills that will pay you forever","Save this. Study this."]}}};
 
-const baseSuffix = "9:16 vertical aspect ratio, subject in lower-third, clean negative space at top for text overlay, hyper-detailed, 8K, cinematic color grading, trending social media aesthetic";
+let DATA = FALLBACK_DATA;
+let niches = DATA.niches;
+let baseSuffix = DATA.baseSuffix;
+
+// Try to load shared niches.json so the web app stays in sync with the CLIs
+fetch("niches.json")
+  .then(r => r.ok ? r.json() : null)
+  .then(json => {
+    if (json && json.niches) {
+      DATA = json;
+      niches = DATA.niches;
+      baseSuffix = DATA.baseSuffix;
+    }
+  })
+  .catch(() => { /* fallback already in place */ });
 
 document.getElementById("generateBtn").addEventListener("click", () => {
   const nicheKey = document.getElementById("niche").value;
